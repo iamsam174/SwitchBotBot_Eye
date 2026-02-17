@@ -1,5 +1,8 @@
 # SwitchBotBot_Eye
 
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 重度肢体不自由児・者が視線入力デバイス（Tobii Eye Tracker 5など）やアクセシビリティスイッチ入力でマウスクリックできるインターフェイスを使用して、SwitchBotボットをタイマーONするためのWindowsアプリです。
 大きな操作パネルと複数の動作モードを備えており、重度肢体不自由・者のスイッチ操作支援や、特定の作業中に手を離さずに制御するハンズフリー用途を想定して設計されています。
 
