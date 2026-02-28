@@ -11,7 +11,7 @@
 
 ## 📥 ダウンロード
 右側の [Releases] セクション、または [こちらのリリースページ](https://github.com/iamsam174/SwitchBotBot_Eye/releases/latest)  から、最新の exeファイル と かんたんガイド(PDF) をダウンロードできます。
-お使いのWindowsPCのセキュリティ対策によってexeファイルがダウンロードできない場合、SwitchBotBot_Eye_v1.0.0.zipをダウンロードして任意のフォルダに（デスクトップでもOK）展開するとexeファイルが使えるようになります。
+お使いのWindowsPCのセキュリティ対策によって exeファイル がダウンロードできない場合、SwitchBotBot_Eye_v1.0.0.zipをダウンロードして解凍すれば exeファイル が使えるようになります。
 
 ##  🚀 概要
 身体的、環境的な理由でスイッチ操作に支援が必要な方向けに開発しました。
