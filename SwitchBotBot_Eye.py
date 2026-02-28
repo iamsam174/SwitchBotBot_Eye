@@ -16,7 +16,7 @@ UUID_VAL = "cba20002-224d-11e6-9fb8-0002a5d5c51b"
 class App:
     def __init__(self, root):
         self.root = root
-        self.root.title("SwitchBot Bot Control System")
+        self.root.title("SwitchBot Bot Control Eye")
         self.root.state('zoomed')
         self.root.configure(bg="#f0f0f0")
         
@@ -179,10 +179,17 @@ class App:
         self.is_running = False
 
     def send_bot_command(self, cmd_type, sec=0):
-        if not self.client or not self.client.is_connected: return
+        if not self.client or not getattr(self.client, 'is_connected', False): return
         if cmd_type == "hold": v = bytearray([0x57, 0x01, 0x03, int(sec)])
         else: return
-        asyncio.run_coroutine_threadsafe(self.client.write_gatt_char(UUID_VAL, v), self.loop)
+        
+        async def _send():
+            try:
+                await self.client.write_gatt_char(UUID_VAL, v)
+            except Exception:
+                pass
+                
+        asyncio.run_coroutine_threadsafe(_send(), self.loop)
 
     def resize_canvas(self, event=None):
         w, h = self.sizes[self.size_var.get()]
@@ -234,13 +241,28 @@ class App:
     async def keep(self):
         while True:
             await asyncio.sleep(2)
-            if self.target_mac and (self.client is None or not self.client.is_connected):
-                self.up_s("接続中...", "red")
+            is_conn = False
+            if self.client:
                 try:
-                    self.client = BleakClient(self.target_mac); await self.client.connect()
+                    is_conn = self.client.is_connected
+                except Exception:
+                    pass
+
+            if self.target_mac and not is_conn:
+                self.up_s("接続中...", "red")
+                if self.client:
+                    try:
+                        await self.client.disconnect()
+                    except Exception:
+                        pass
+                try:
+                    self.client = BleakClient(self.target_mac)
+                    await self.client.connect()
                     self.up_s("接続完了", "green")
                     self.play_sound(1200, 150)
-                except Exception: self.up_s("再接続試行中...", "red")
+                except Exception:
+                    self.up_s("再接続試行中...", "red")
+                    await asyncio.sleep(2)
 
     def up_s(self, t, c):
         if self.root: self.root.after(0, lambda: self.lbl_s.config(text=t, fg=c))
@@ -270,7 +292,7 @@ class App:
 
     def play_sound(self, freq, dur):
         if self.sound.get():
-            threading.Thread(target=lambda: winsound.Beep(freq, dur), daemon=True).start()
+            winsound.PlaySound("SystemAsterisk", winsound.SND_ALIAS | winsound.SND_ASYNC)
 
 if __name__ == "__main__":
     r = tk.Tk()
