@@ -10,7 +10,8 @@
 [こちらから操作の様子をご覧いただけます](https://youtu.be/6u8XYFxGNYo)
 
 ## 📥 ダウンロード
-右側の [Releases] セクション、または [こちらのリリースページ](https://github.com/iamsam174/SwitchBotBot_Eye/releases/latest)  から、最新の EXEファイル と かんたんガイド(PDF) をダウンロードできます。
+右側の [Releases] セクション、または [こちらのリリースページ](https://github.com/iamsam174/SwitchBotBot_Eye/releases/latest)  から、最新の exeファイル と かんたんガイド(PDF) をダウンロードできます。
+お使いのWindowsPCのセキュリティ対策によってexeファイルがダウンロードできない場合、zipファイルをダウンロードして任意のフォルダに（デスクトップでもOK）展開するとexeファイルが使えるようになります。
 
 ##  🚀 概要
 身体的、環境的な理由でスイッチ操作に支援が必要な方向けに開発しました。
